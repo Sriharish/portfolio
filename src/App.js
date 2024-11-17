@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { Canvas } from '@react-three/fiber'
+import { useErrorBoundary } from 'use-error-boundary'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Scene from './components/Scene'
+
+const App = () => {
+    const { ErrorBoundary, didCatch, error } = useErrorBoundary()
+
+    return didCatch ? (
+        <div>{error.message}</div>
+    ) : (
+        <ErrorBoundary>
+            <Canvas onCreated={createCanvasHandler}>
+                <Scene />
+            </Canvas>
+        </ErrorBoundary>
+    )
 }
 
-export default App;
+export default Scene
