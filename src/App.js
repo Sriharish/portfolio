@@ -10,11 +10,11 @@ const App = () => {
         <div>{error.message}</div>
     ) : (
         <ErrorBoundary>
-            <Canvas onCreated={createCanvasHandler}>
+            <Canvas>
                 <Scene />
             </Canvas>
         </ErrorBoundary>
     )
 }
 
-export default Scene
+export default App
